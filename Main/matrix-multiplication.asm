@@ -26,10 +26,12 @@ start:
 	
 	;add your code here
 	
+	Call calculate
+	
 	;mov msg[0], 2h 
-	mov al, msg[0]
-    mov ah, 09h
-    int 21h 
+	;mov al, msg[0]
+    ;mov ah, 09h
+    ;int 21h 
 	
     ;mov al, matrixB[0]
     ;mov ah, 0eh
@@ -41,6 +43,19 @@ start:
 
 	mov ax, 4c00h ; exit to operating system.
 	int 21h    
-ends
+ends 
+
+calculate PROC 
+    
+mov    BL, 2h
+mov    AL, 2h
+;MUL    BL      ; AX = AL * BL.   
+
+imul   al, bl
+mov    ah, 0eh
+int    10h            
+RET           
+        
+calculate ENDP
 
 end start ; set entry point and stop the assembler.
